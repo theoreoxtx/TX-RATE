@@ -10,7 +10,12 @@ async function init(){
   model=await FaceLandmarker.createFromOptions(vision,{baseOptions:{modelAssetPath:new URL("models/face_landmarker.task",appRoot).href,delegate:"CPU"},runningMode:"IMAGE",numFaces:1});
   $("#status").textContent="ENGINE STATUS: READY • LOCAL MODEL";
   $("#run").disabled=!img;
- }catch(e){$("#status").textContent="MODEL ERROR: "+(e?.message||String(e));console.error(e);}
+ }catch(e){const detail = e instanceof Error
+   ? e.name + ": " + e.message
+   : "Event: " + (e?.type || "unknown") +
+     " | target: " + (e?.target?.src || e?.target?.url || "unknown");
+  $("#status").textContent="MODEL ERROR: "+detail;
+  console.error("MediaPipe initialization failed:", e);console.error(e);}
 }
 $("#photo").addEventListener("change",e=>{
  const file=e.target.files?.[0];if(!file)return;
