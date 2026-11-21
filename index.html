@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#080b10"><title>TX RATE // FACE LAB</title></head>
+<body>
+<header><div class="brand">TX<span>//</span>RATE</div><div class="header-right"><span class="pulse"></span> LOCAL VISION ENGINE</div></header>
+<main>
+<section class="hero"><div class="eyebrow">FACE LAB / BUILD 03.0</div><h1>ANALYZE.<br><i>REFINE.</i></h1><p>On-device facial landmark mapping and photo-presentation diagnostics. No uploads. No beauty rankings.</p></section>
+<section class="panel upload-panel">
+ <div class="panel-head"><b><span>01</span> &nbsp; SOURCE IMAGE</b><small>LOCAL ONLY</small></div>
+ <label class="dropzone" for="photo"><div class="plus">＋</div><b>SELECT PORTRAIT</b><small>One face • front-facing • clear lighting</small></label><input id="photo" type="file" accept="image/*" hidden>
+ <div class="preview-wrap" id="previewWrap" hidden><canvas id="faceCanvas"></canvas><div class="preview-tag">LANDMARK OVERLAY</div></div>
+ <button id="run" disabled>INITIALIZE ANALYSIS <span>↗</span></button><div id="status">ENGINE STATUS: WAITING FOR IMAGE</div>
+</section>
+<section id="report" hidden>
+ <div class="report-top"><div><div class="eyebrow">02 / SCAN COMPLETE</div><h2>ANALYSIS REPORT</h2></div><div class="verified">● LOCAL</div></div>
+ <section class="panel">
+  <div class="panel-head"><b>LANDMARK DETECTION</b><small>MEDIAPIPE</small></div>
+  <div class="landmark-hero"><strong id="landmarkCount">478</strong><div><b>POINTS DETECTED</b><small>Facial surface tracking mesh</small></div></div>
+  <div class="bar"><span id="meshBar"></span></div>
+  <p class="micro">Landmarks are geometric tracking coordinates. They are not beauty measurements or a scientific attractiveness score.</p>
+ </section>
+ <section class="panel">
+  <div class="panel-head"><b>03 / PHOTO DIAGNOSTICS</b><small>IMAGE METRICS</small></div>
+  <div class="overall"><div><small>PHOTO PRESENTATION INDEX</small><div class="big-score"><span id="overall">—</span><small>/100</small></div></div><div class="index-tag" id="indexTag">AWAITING SCAN</div></div>
+  <div id="metrics" class="metric-grid"></div>
+ </section>
+ <section class="panel">
+  <div class="panel-head"><b>04 / STRONGEST & NEXT STEPS</b><small>OBSERVATIONS</small></div>
+  <div class="insight best"><small>STRONGEST PHOTO ASPECT</small><b id="best">—</b></div>
+  <div class="insight improve"><small>HIGHEST-PRIORITY IMPROVEMENT</small><b id="worst">—</b></div>
+  <ul id="recommendations"></ul>
+ </section>
+ <section class="panel">
+  <div class="panel-head"><b>05 / FEATURE MAP</b><small>LANDMARK REGIONS</small></div>
+  <div class="region-grid">
+   <div><b>Face oval</b><small>Contour landmark region</small></div>
+   <div><b>Eyes</b><small>Eye contour landmarks</small></div>
+   <div><b>Nose</b><small>Nose bridge and base</small></div>
+   <div><b>Mouth</b><small>Lip contour landmarks</small></div>
+  </div>
+  <p class="micro">These regions are mapped for visualization only. TX RATE does not judge their size, shape, attractiveness, or how they compare with other people.</p>
+ </section>
+ <button class="secondary" id="reset">NEW ANALYSIS</button>
+</section>
+<section class="panel note-panel"><div class="panel-head"><b>ABOUT TX RATE</b><small>V3.0</small></div><p>This app can inspect image properties and map facial landmarks. It cannot scientifically determine a person's attractiveness, assign PSL scores, or classify people as Sub3, LTN, MTN, HTN, Chad or similar tiers. Its suggestions focus on controllable photo conditions and personal styling choices.</p></section>
+<footer>TX RATE <span>—</span> PRIVATE BY DESIGN</footer>
+</main><script type="module" src="/src/main.js"></script></body></html>
