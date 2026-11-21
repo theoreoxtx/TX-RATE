@@ -6,11 +6,11 @@ const canvas=$("#faceCanvas"),ctx=canvas.getContext("2d");
 async function init(){
  $("#status").textContent="ENGINE STATUS: LOADING LOCAL MODEL";
  try{
-  const vision=await FilesetResolver.forVisionTasks("/wasm");
-  model=await FaceLandmarker.createFromOptions(vision,{baseOptions:{modelAssetPath:"/models/face_landmarker.task",delegate:"CPU"},runningMode:"IMAGE",numFaces:1});
+  const appRoot=new URL("../",import.meta.url); const vision=await FilesetResolver.forVisionTasks(new URL("wasm/",appRoot).href);
+  model=await FaceLandmarker.createFromOptions(vision,{baseOptions:{modelAssetPath:new URL("models/face_landmarker.task",appRoot).href,delegate:"CPU"},runningMode:"IMAGE",numFaces:1});
   $("#status").textContent="ENGINE STATUS: READY • LOCAL MODEL";
   $("#run").disabled=!img;
- }catch(e){$("#status").textContent="MODEL FILE MISSING — FOLLOW README SETUP";console.error(e);}
+ }catch(e){$("#status").textContent="MODEL ERROR: "+(e?.message||String(e));console.error(e);}
 }
 $("#photo").addEventListener("change",e=>{
  const file=e.target.files?.[0];if(!file)return;
